@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +8,8 @@ namespace ProjectMahasiswa
     class Program
     {
         // deklarasi objek collection untuk menampung objek mahasiswa
-        static List<string> daftarMahasiswa = new List<string>();
-
-
+        static List<Mahasiswa> daftarMahasiswa = new List<Mahasiswa>();
+        Mahasiswa Maha = new Mahasiswa();
 
         static void Main(string[] args)
         {
@@ -19,6 +18,7 @@ namespace ProjectMahasiswa
             while (true)
             {
                 TampilMenu();
+                
 
                 Console.Write("\nNomor Menu [1..3]: ");
                 int nomorMenu = Convert.ToInt32(Console.ReadLine());
@@ -44,51 +44,62 @@ namespace ProjectMahasiswa
 
         static void TampilMenu()
         {
-            Console.Clear();
-
+                Console.Clear();
+                Console.Write("Pilih Menu Aplikasi");
+                Console.Write("\n");
+                Console.Write("\n1. Tambah Mahasiswa");
+                Console.Write("\n2. Tampilkan Mahasiswa");
+                Console.Write("\n3. Keluar");
             // PERINTAH: lengkapi kode untuk menampilkan menu
         }
 
         static void TambahMahasiswa()
         {
             Console.Clear();
-            int Nim;
-            sting Nama;
-            string JenisKelamin;
-            double ipk;
-            Console.Write("Tambah Data Mahasiswa");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.Write("NIM     :");
-            Nim = int.Parse(Console.ReadLine());
+
+            Mahasiswa Maha = new Mahasiswa();
+
+            Console.Write("Tambah Mahasiswa");
+            Console.Write("\n\nNIM     : ");
+            Maha.nim = double.Parse(Console.ReadLine());
+
             Console.Write("Nama    : ");
-            Nama = (Console.ReadLine());
-            Console.Write("Jenis Kelamin [L/P]  : ");
-            JenisKelamin = (Console.ReadLine());
-            if (JenisKelamin=="L")
+            Maha.Nama = Console.ReadLine();
+
+            Console.Write("Jenis Kelamin [L/P] : ");
+            Maha.jk = Console.ReadLine();
+            if (Maha.jk == "L")
             {
-                JenisKelamin = "Laki-Laki";
+                Maha.jk = "Laki-Laki";
             }
-            else if (JenisKelamin == "P")
+            else if (Maha.jk == "P")
             {
-                JenisKelamin = "Perempuan";
+                Maha.jk = "Perempuan";
             }
+
             Console.Write("IPK     : ");
-            ipk = double.Parse(Console.ReadLine());
-
-            // PERINTAH: lengkapi kode untuk menambahkan objek mahasiswa ke dalam collection
-
-            Console.WriteLine("\nTekan ENTER untuk kembali ke menu");
+            Maha.ipk = double.Parse (Console.ReadLine());
+            daftarMahasiswa.Add(Maha);
+            Console.WriteLine("\nTekan enter untuk kembali ke menu");
             Console.ReadKey();
+            // PERINTAH: lengkapi kode untuk menambahkan objek mahasiswa ke dalam collection
         }
+
 
         static void TampilMahasiswa()
         {
+
             Console.Clear();
+            Console.WriteLine("Data Mahasiswa\n");
+            int no = 1;
+            foreach (Mahasiswa Maha in daftarMahasiswa)
+            {
 
-            // PERINTAH: lengkapi kode untuk menampilkan daftar mahasiswa yang ada di dalam collection
-
-            Console.WriteLine("\nTekan enter untuk kembali ke menu");
+                Console.WriteLine("{0}. {1}, {2}, {3}, {4}", no, Maha.nim, Maha.Nama, Maha.jk, Maha.ipk);
+                no++;
+            }
+            Console.WriteLine();
+            Console.WriteLine("Tekan enter untuk kembali ke menu");
             Console.ReadKey();
         }
     }
